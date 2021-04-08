@@ -24,7 +24,7 @@ if __name__== "__main__":
     if (args.concept):
          x = redactor.get_concept(x, args.concept)
     if (args.output):
-        redactor.Output(args.input, x, args.output)
+        redactor.final_output(args.input, x, args.output)
     if (args.stats):
         redactor.get_stats()
 
