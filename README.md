@@ -2,48 +2,29 @@
 **RAJASRI KOLLI**
 
 
-In this phase the files the html and text files are redacted based on given rdaction flags and concepts.
+In this Project all the sensitive information from the text files  are redacted based on given input flags and commands.
 
-We are trying to sensitive information from the records.
 
-REDACTED-FLAGS: The redacted flags generally are names, genders, dates, places, addresses and phones.
 
-For the names I have used nltk and nltk.ne_chunk() property to identify entities with labels named "PERSON".
+*Info to be redacted*: The redacted flags generally are names, genders, dates, concept and phones.
 
-For the places I have used nltk and nltk.ne_chunk() property to identify enities with labels named "GPE".
+For the names : nltk and nltk.ne_chunk() are used to identify named entities with labels named "PERSON".
 
-For the dates I have used the regular expression for identifying the terms. It is useful in identifying the dates of format "26-10-1995","sunday","Sunday","SUNDAY","sun","Sun","SUN", "JAN","jan","january","January","JAnuary 22 2017".
 
-For the Phones I have used the regular expression to identify them. It is useful in finding the following formats of phone numbers such as '(926) 1234567', '(926)1234567', '123-4567', '1234567', '555 1234567', '7926123456', '8500700022', '9261234567'
+For the dates : the regular expression for identifies the terms/dates of format 'dd/mm/yyyy'
 
-For the genders I have used a list of possible gender forms such as genders=['he','she','him','her','his','hers','male','female','man','woman','men','women','He','She','Him','Her','His','Hers','Male','Female','Man','Woman','Men','Women','HE','SHE','HIM','HER','HIS','HERS','MALE','FEMALE','MAN','WOMAN','MEN','WOMEN']
+For the Phones : regular expressions are used to identify them finding the following formats of phone numbers such as 'ddd./-ddd./-dddd'
 
-if the taken file has any of the above gender form listed above it replaces the word.
+For the genders :  a list of possible genders include =['he','she','him','her','his','hers','male','female','man','woman','men','women','He','She','Him','Her','His','Hers','Male','Female','Man','Woman','Men','Women','HE','SHE','HIM','HER','HIS','HERS','MALE','FEMALE','MAN','WOMAN','MEN','WOMEN']
 
-In all the above cases of the redacted flags if the file that has any matching entity similar to items identified in each of them, those words are replaced with "þ"of their repective length .
+if  taken any file which has any of the above gender form , it replaces the word.
 
-For example in the case of genders if the file has him term in it then the word him is replaced with þþþ in the file.
+For the concept : this function identifies synonyms of given concept word with the help of importing wordnet from nltk.corpus
 
-CONCEPTS: For the concepts I have used synsets in nltk.corpus which is helpful in identifying the synonms.
-from nltk.corpus import wordnet as wn for i in concept: x=wn.synsets(i) l=[]
+-- All the sensitive information is replaced with ' ^ ' times the length of item to be redacted.
 
-    for i in x:
-    	l.append(str(i))
-    
-    syn=[]
-    #obtaining the synonms of the concepts  and using the regular expressions to extract just the synonms leaving extra syntax behind
-    for i in l:
-        a=re.search(r'\'(\w+)\.',i)
-        syn.append(a.group(1)) 
-x=wn.synsets("help") x [Synset('aid.n.02'), Synset('assistant.n.01'), Synset('aid.n.01'), Synset('avail.n.01'), Synset('help.v.01'), Synset('help.v.02'), Synset('help.v.03'), Synset('help_oneself.v.01'), Synset('serve.v.05'), Synset('help.v.06'), Synset('avail.v.03'), Synset('help.v.08')]
 
-So the synsets gives us the synonms in a list of synset items which I converted to list of strings and then used regular expression to extract just the word from that and stored in a list.
-
-Then I have searched for the sentences in file if they contain atleast one of synonm of concept. If it is found in a sentence then I redacted the whole words in the sentence using the word_tokenize and sent_tokenize of nltk.
-
-For example sentence was 'Help word has many synonyms such as aid, assistant, avail, help, help_oneself, serve, avail and many other words.\nDogs are very kind animals but that statement does not hold true for each and every dog.\n As human beings we should help each others.' then I have redacted it to the form 'þþþþ þþþþ þþþ þþþþ þþþþþþþþ þþþþ þþ þþþþ þþþþþþþþþþ þþþþþþ þþþþþ þþþþþþþþþþþþþ þþþþþþ þþþþþ þþþ þþþþ þþþþþ þþþþþþ\nDogs are very kind animals but that statement does not hold true for each and every dog . þþ þþþþþ þþþþþþ þþ þþþþþþ þþþþ þþþþ þþþþþþþ'
-
-OUTPUT For the output I have used the shell script through os commands in writing the redacted content into file and converting into pdf files.
+OUTPUT : For the output all the redacted content into file and converting into pdf files.
 
 os.system("enscript {0} -o - | ps2pdf - {1}/{2}".format(f_name,loc,fi_name))
 
