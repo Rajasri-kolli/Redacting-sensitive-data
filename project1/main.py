@@ -7,6 +7,7 @@ if __name__== "__main__":
     parser.add_argument("--names", help="Redact_names", action='store_true')
     parser.add_argument("--gender", help="Redact_genders", action='store_true')
     parser.add_argument("--dates",  help="Redact_dates", action='store_true')
+    parser.add_argument("--phones", help="Redact_phones",action='store_true')
     parser.add_argument("--stats",  help="Redact_stats", action='store_true')
     parser.add_argument("--concept", help="Redact concept words")
     parser.add_argument("--output", help="Output Files")
@@ -23,6 +24,8 @@ if __name__== "__main__":
          x = redactor.get_dates(x)
     if (args.concept):
          x = redactor.get_concept(x, args.concept)
+    if (args.phones) :
+         x = redactor.get_phones(x)
     if (args.output):
         redactor.final_output(args.input, x, args.output)
     if (args.stats):
