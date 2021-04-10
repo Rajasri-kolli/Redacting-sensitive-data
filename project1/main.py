@@ -25,7 +25,7 @@ if __name__== "__main__":
     if (args.concept):
          x = redactor.get_concept(x, args.concept)
     if (args.phones) :
-         x = redactor.get_phones(x)
+         x = redactor.get_phone(x)
     if (args.output):
         redactor.final_output(args.input, x, args.output)
     if (args.stats):
