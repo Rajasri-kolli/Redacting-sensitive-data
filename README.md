@@ -37,4 +37,4 @@ pipenv run python redactor.py --input '*.txt' \
       
       stats is the function which when called gives you a brief analysis of the process, here suppose it gives you the count of number of words redacted in each function.
 
-
+Final test cases are run using  "pipenv run python -m pytest" which checks for the validity of code . 
