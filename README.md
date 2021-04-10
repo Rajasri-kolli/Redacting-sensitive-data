@@ -26,5 +26,15 @@ For the concept : this function identifies synonyms of given concept word with t
 
 OUTPUT  all the redacted files will go into a separate folder with extensinon redacted .txt 
 
+pipenv run python redactor.py --input '*.txt' \
+                    --names --dates --phones \
+                    --concept 'kids' \
+                    --output 'files/' \
+                    --stats stderr
+                    
+                    
+      If we run the above code in the command line argument , the glob operator identifies multiple input text files and redact all the necessary input flags given and ouput is sent into other new folder. 
+      
+      stats is the function which when called gives you a brief analysis of the process, here suppose it gives you the count of number of words redacted in each function.
 
 
