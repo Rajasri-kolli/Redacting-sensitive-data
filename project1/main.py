@@ -29,5 +29,5 @@ if __name__== "__main__":
     if (args.output):
         redactor.final_output(args.input, x, args.output)
     if (args.stats):
-        redactor.get_stats()
+        redactor.write_stats()
 
