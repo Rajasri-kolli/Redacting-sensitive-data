@@ -2,5 +2,5 @@
 redacted_names : 6
 redacted_gender : 7
 redacted_dates : 5
-redacted_phones : 4
+redacted_phone : 4
 redacted_concept : 6
