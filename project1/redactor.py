@@ -170,4 +170,14 @@ def final_output(inputfiles,data,outputpath):
                 file.close()
     return len(filenames)
 
+def write_stats(stats_list=stats_list):
+
+    path = ('stderr/stderr.txt')
+    file = open(path, "w", encoding="utf-8")
+    for i in range(len(stats_list)):
+        file.write(stats_list[i])
+        file.write("\n")
+    file.close()
+    return stats_list
+
 
