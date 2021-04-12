@@ -16,15 +16,13 @@ def test_read_input():
 
 def test_redact_names():
     counter = 0
-    list = (redactor.Reading_input(files))
-    redacted_list = redactor.redact_names(list)
-    # print(len(redacted_list))
+    list = (redactor.read_input(files))
+    redacted_list = redactor.get_names(list)
     for i in range(len(redacted_list)):
         temp_file = redacted_list[i]
         words = nltk.word_tokenize(temp_file)
         for j in words:
-            # print (j)
-            if '\u2588' in j:
+            if '^' in j:
                 counter += 1
     assert counter is not None
 
@@ -32,7 +30,6 @@ def test_get_gender():
     counter =0
     list = (redactor.read_input(files))
     redacted_list = redactor.get_gender(list)
-    # print(len(redacted_list))
     for i in range(len(redacted_list)):
         temp_file = redacted_list[i]
         words = nltk.word_tokenize(temp_file)
@@ -74,6 +71,7 @@ def test_get_stats():
     a = redactor.get_names(a)
     a = redactor.get_gender(a)
     a= redactor.get_date(a)
+    a= redactor.get_phone(a)
     word = 'sharp'
     redactor.get_concept(a,word)
     stats_list =redactor.stats_list
