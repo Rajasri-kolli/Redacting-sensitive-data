@@ -33,6 +33,9 @@ def get_stats(redacted_type= 'none', count=0):
     elif redacted_type == 'redacted_gender':
         x = "redacted_gender : " + str(count)
         stats_list.append(x)
+    elif redacted_type == 'redacted_phone' :
+        x = "redacted_phone : " + str(count)
+        stats_list.append(x)
     elif redacted_type == 'redacted_concept':
         x= " redacted_concept : " + str(count)
         stats_list.append(x)
