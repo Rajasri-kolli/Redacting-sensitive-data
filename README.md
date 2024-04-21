@@ -1,4 +1,3 @@
-
 In this Project all the sensitive information from the text files are redacted based on given input flags and commands.
 
 **Info to be redacted**: The redacted flags generally are names, genders, dates, concept and phones.
